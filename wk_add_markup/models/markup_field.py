@@ -18,5 +18,4 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id','markup')
     def change_product_markup(self):
         if self.product_id and self.markup:
-            raise UserError(self.product_id.standard_price)
             self.price_unit = self.product_id.standard_price*(1+self.markup)
