@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
 
     _inherit = "sale.order.line"
 
-    markup = fields.Float(string="Mark up (In percetage)")
+    markup = fields.Float(string="Mark up(%)")
 
     @api.multi
     @api.onchange('product_id','markup')
