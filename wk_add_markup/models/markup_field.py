@@ -17,5 +17,13 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.onchange('product_id','markup')
     def change_product_markup(self):
-        if self.product_id and self.markup:
+        if self.product_id:
+            self.markup = self.product_id.markup
             self.price_unit = self.product_id.standard_price*(1 + self.markup/100)
+
+
+class ProductTemplate(models.Model):
+    
+    _inherit = "product.template"
+
+    markup = fields.Float(string="Mark up (%)")
